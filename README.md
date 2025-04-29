@@ -1,75 +1,108 @@
-![video_spider](https://socialify.git.ci/5ime/video_spider/image?description=1&descriptionEditable=%E6%94%AF%E6%8C%8123%E4%B8%AA%E7%9F%AD%E8%A7%86%E9%A2%91%E5%B9%B3%E5%8F%B0%E5%8E%BB%E6%B0%B4%E5%8D%B0%E4%B8%8B%E8%BD%BD&font=Inter&forks=1&language=1&owner=1&pattern=Circuit%20Board&stargazers=1&theme=Light)
+# Video_Spider - 无水印短视频下载工具
 
-目前支持23个平台视频去水印下载，欢迎各位Star，**提交issues时请附带视频链接**。
+> **Video_Spider** 是一款高效、简洁的短视频无水印下载工具。只需提供短视频链接，即可快速获取无水印的视频版本，支持多个主流短视频平台，为用户提供纯净的视频下载体验。
 
-## 支持平台
+> [!NOTE]
+> 旧版本在 master 分支，正在缓慢重构中...
 
-| 平台 | 状态| 平台 | 状态| 平台 | 状态| 平台 | 状态| 平台 | 状态|
-|  ----  | ----  | ----  | ---- |----|----|----|----|----|----|
-| 皮皮虾 | ✔ | 抖音短视频 | ✔ | 火山短视频 | ✔| 皮皮搞笑 | ✔ | 全民K歌 | ✔ |
-| 微视短视频 | ✔ | 微博 | ✔ | 最右 | ✔| vuevlog | ✔ |小咖秀| ✔|
-| 轻视频 | ✔ | 快手短视频 | ✔ | 全民小视频 | ✔|陌陌 | ✔ | Before避风 | ✔ |
-| 西瓜视频 | ✔|逗拍|✔|虎牙|✔|6间房|✔|梨视频|✔|
-| 新片场 | ✔|Acfun|✔|美拍|✔|||||
+✨ **欢迎为本项目添加 `Star`，并通过 `Issues` 提交反馈或建议。**
 
-## 请求示例
+## 📋 支持平台
 
-支持GET/POST `url`参数必填，请优先使用 `POST` 请求，`GET` 请求自行 `urlencode` 编码
+本工具支持从多个短视频平台下载无水印的视频。请注意，部分平台的短视频只能下载水印版本，无法去除水印。
 
-## 返回数据
+> ✔️ 完全支持无水印  
+> ⭕ 仅支持下载水印版本  
 
-因为平台众多，所以返回的参数不固定，但 `title`, `cover`, `url` 一定会有
+| 平台     | 状态 | 平台       | 状态 | 平台     | 状态 |
+| -------- | ---- | ---------- | ---- | -------- | ---- |
+| **抖音** | ✔️    | **皮皮虾** | ✔️    | **微博** | ⭕    |
 
-| 字段名 | 说明 | 字段名 | 说明 |字段名 | 说明 |字段名 | 说明 |
-|  ----  | ----  | ----  | ---- |---- |---- |----|----|
-| author | 视频作者| avatar | 作者头像 | like | 视频点赞量 | time | 视频发布时间 |
-| title | 视频标题 | cover | 视频封面 | url | 视频无水印链接 | sex  | 作者性别 |
-| age | 作者年龄 | city | 所在城市 | uid | 作者id | code | 状态码 |
+## 🚀 快速开始
 
+1. **克隆仓库：**
 
-## 调用示例
+   ```bash
+   git clone https://github.com/5ime/video_spider.git
+   ```
 
-如果你不会调用 我在`demo`目录下放两个最基本的调用演示
+2. **安装依赖：**
 
-- `demo.html`第`98`行请修改为`你的接口地址`
-- `demo.py`第`7`行请修改为`你的接口地址`
+   进入项目目录后，使用 Composer 安装项目依赖：
 
-## FAQ
+   ```bash
+   cd video_spider
+   composer install
+   ```
 
-**为什么演示网址界面和`demo`文件夹里的不一样**
+3. **启动服务：**
 
-因为我用vue重写了(https://github.com/5ime/vue-page)
+   使用 PHP 内置服务器，或根据项目需求配置 Apache/Nginx：
 
-**网址中包含特殊字符导致GET请求无法传递正确的参数值**
+   ```bash
+   php -S localhost:8000 -t public
+   ```
 
-传递的参数中包含`#&=`之类的，可能无法正确传递参数值，建议使用`POST请求`或`urlencode编码`后进行GET请求
+   如果您使用 Apache 或 Nginx，请根据项目的实际情况配置并启动 Web 服务。
 
-**关于有些视频平台解析失败**
+4. **开始使用：**
 
-有些平台需要cookie，请手动更新cookie，如果还是解析失败，请提交issues
+   访问 `http://localhost:8000` 或生产环境地址，即可体验无水印视频下载功能！
 
-**短视频图集图片去水印**
+## 🛠️ 如何使用
 
-https://github.com/5ime/images_spider
+### 🔑 请求参数
 
-**抖音X-Bogus校验**
+- `url`：视频链接。请确保提供有效且正确的视频 URL。
+  - 对于 **GET** 请求，请务必对 URL 进行 `urlencode` 编码，避免特殊字符导致错误。
 
-目前使用的 https://github.com/B1gM8c/X-Bogus 提供的服务
+### 📡 请求方式
 
-你也可以基于我的模板 https://github.com/5ime/Tiktok_Signature 一键部署到 vercel，需要修改的地方如下
+本工具支持 **GET** 和 **POST** 请求。建议使用 **POST** 请求，以保证更高的稳定性。
 
-```php
-$url = 'https://tiktok.iculture.cc/X-Bogus';
-$data = json_encode(array('url' => 'https://www.douyin.com/aweme/v1/web/aweme/detail/?aweme_id=' . $id[0] . '&aid=1128&version_name=23.5.0&device_platform=android&os_version=2333','userAgent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'));
-$header = array('Content-Type: application/json');
-$url = json_decode($this->curl($url, $data, $header), true)['param'];
-// 改为
-$url = '你的 vercel 地址';
-$data = json_encode(array('url' => 'https://www.douyin.com/aweme/v1/web/aweme/detail/?aweme_id=' . $id[0] . '&aid=1128&version_name=23.5.0&device_platform=android&os_version=2333','userAgent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36'));
-$header = array('Content-Type: application/json');
-$url = json_decode($this->curl($url, $data, $header), true)['data']['url'];
+#### 示例 1：POST 请求（推荐）
+
+```bash
+curl -X POST "http://localhost:8000" \
+     -H "Content-Type: application/x-www-form-urlencoded" \
+     -d "url=<video_url>"
 ```
 
-## 免责声明
+#### 示例 2：GET 请求
 
-本仓库只为学习研究，如涉及侵犯个人或者团体利益，请与我取得联系，我将主动删除一切相关资料，谢谢！
+```bash
+curl -G "http://localhost:8000" \
+     --data-urlencode "url=<encoded_video_url>"
+```
+
+### 📤 返回格式
+
+请求成功后，您将获得一个包含以下字段的 JSON 响应。`url` 字段为必返字段，包含无水印的视频链接。
+
+| 字段名     | 说明     | 字段名     | 说明     | 字段名   | 说明       | 字段名   | 说明         |
+| ---------- | -------- | ---------- | -------- | -------- | ---------- | -------- | ------------ |
+| **author** | 视频作者 | **avatar** | 作者头像 | **like** | 视频点赞量 | **time** | 视频发布时间 |
+| **title**  | 视频标题 | **cover**  | 视频封面 | **url**  | 视频链接   | **sex**  | 作者性别     |
+| **age**    | 作者年龄 | **city**   | 所在城市 | **uid**  | 作者ID     | **code** | 状态码       |
+
+## ❓ 常见问题
+
+### 1. **如何处理 GET 请求中的特殊字符问题？**
+
+当短视频链接包含特殊字符（例如 `#`、`&`、`=` 等）时，GET 请求可能无法正确传递参数。为避免此问题，建议：
+- 使用 **POST** 请求；
+- 如果必须使用 **GET** 请求，请对 URL 进行正确的 `urlencode` 编码。
+
+### 2. **为什么某些平台的视频解析失败？**
+
+有些平台的短视频解析可能会失败，常见原因是平台要求额外的认证信息或 `cookie`。请确保：
+- 您已经手动更新了 `cookie`，并将其存储在 `config/cookies.php` 文件中；
+- 如果问题仍然存在，请提交 **Issue** 反馈，我们将尽快处理。
+
+## 💡 欢迎贡献
+
+如果您有任何建议或想法，欢迎通过 `Issues` 提交反馈，我们将根据社区反馈不断改进项目。
+
+## ⚖️ 免责声明
+
+本项目仅供个人学习和研究使用。如果涉及到侵犯任何个人或团体的权益，请立即联系我们，我们将尽快处理相关问题并删除数据。
